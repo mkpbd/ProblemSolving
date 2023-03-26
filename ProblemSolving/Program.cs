@@ -25,6 +25,10 @@ namespace ProblemSolving
             //var abc = ArrayOfProblem.cutTheSticks(new List<int>() { 5, 4, 4, 2, 2, 8 });
             var abc = ArrayOfProblem.circularArrayRotation(new List<int>() { 3,2,3 },2,new List<int>() { 3});
 
+            // new arr 
+
+            var cc = ProblemsSolved2.ClimbingLeaderboard(new List<int> { 100, 100, 50, 40, 40, 20, 10, }, new List<int> { 5, 25, 50, 120 });
+
         }
     }
 }
