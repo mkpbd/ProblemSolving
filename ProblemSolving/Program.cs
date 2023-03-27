@@ -27,7 +27,11 @@ namespace ProblemSolving
 
             // new arr 
 
-            var cc = ProblemsSolved2.ClimbingLeaderboard(new List<int> { 100, 100, 50, 40, 40, 20, 10, }, new List<int> { 5, 25, 50, 120 });
+         //   var cc = ProblemsSolved2.ClimbingLeaderboard(new List<int> { 100, 100, 50, 40, 40, 20, 10, }, new List<int> { 5, 25, 50, 120 });
+            //var cc = ProblemsSolved2.squares(3,9);
+            //var cc = ProblemsSolved2.repeatedString("aba",10);
+            //var cc = ProblemsSolved2.equalizeArray(new List<int>{ 3, 3, 2, 1, 3});
+            var cc = ProblemsSolved2.equalizeArray(new List<int>{ 1 ,2, 3 ,1, 2, 3, 3, 3 });
 
         }
     }

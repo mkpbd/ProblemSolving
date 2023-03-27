@@ -63,5 +63,64 @@ namespace ProblemSolving.ArrayProblems
             //return l;
 
         }
+
+
+
+        public static int squares(int a, int b)
+        {
+
+            int result = 0;
+
+            int minimum = (int)Math.Sqrt(a);
+            int maximum = (int)Math.Sqrt(b);
+
+            for(var i = minimum; i <= maximum; i++) {
+            
+                if(i * i >= a && i*i <=b) result++;
+            }
+
+
+            return result;
+        }
+
+
+        public static long repeatedString(string s, long n)
+        {
+            long firstStgringlenght = s.Length;
+
+            long count = 0;
+            long[] x = new long[firstStgringlenght + 1];
+
+            for(var i =1; i <= firstStgringlenght; i++)
+            {
+                if (s[i-1].ToString() == "a") count++;
+
+                x[i] = count;
+
+            }
+
+
+            long rr = (n / firstStgringlenght) * count + x[n % firstStgringlenght];
+
+
+            return rr;
+            
+
+
+        }
+
+
+        public static int equalizeArray(List<int> arr)
+        {
+            int[] x = new int[101]; int max = 0;
+
+            for(int i = 0; i < arr.Count; i++)
+            {
+                max = Math.Max(max, ++x[arr[i]]);
+            }
+
+            return arr.Count - max;
+        }
+
     }
 }
