@@ -122,5 +122,67 @@ namespace ProblemSolving.ArrayProblems
             return arr.Count - max;
         }
 
+
+
+        public static int jumpingOnClouds(List<int> c)
+        {
+
+
+            int count = 0;
+
+            int i = 0;
+
+            while(i < c.Count - 1)
+            {
+                if(i + 2 < c.Count  && c[i+2] == 0)
+                {
+                    count++;
+                    i += 2;
+                }
+                else
+                {
+                    count++;
+                    i++;
+                }
+            }
+
+            return count;
+        }
+
+
+
+
+        public static List<int> acmTeam(List<string> topic)
+        {
+            List<int> subjectOfList = new List<int>();
+
+            for(int x = 0; x < topic.Count; x++)
+            {
+                for(int y = x; y < topic.Count; y++)
+                {
+                    if (topic[y] == topic[x]) continue;
+
+                    int subjectCount = 0;
+
+
+                    for (int z = 0; z < topic[x].Length; z++)
+                    {
+                        if (topic[x][z] != '0' || topic[y][z] != '0') subjectCount++;
+                    }
+
+                    subjectOfList.Add(subjectCount);
+                }
+
+                
+            }
+
+            int maximumSubject = subjectOfList.Max();
+
+            int items = subjectOfList.Where(x => x == maximumSubject).Count();
+
+            return new List<int>() { maximumSubject, items};
+        }
+
+
     }
 }
