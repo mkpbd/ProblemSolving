@@ -184,5 +184,23 @@ namespace ProblemSolving.ArrayProblems
         }
 
 
+        public static int beautifulTriplets(int d, List<int> arr)
+        {
+            int count = 0;
+
+            for(int i  = 0; i < arr.Count - d; i++)
+            {
+                int arrValue = arr[i];
+
+                if(arr.Contains(arrValue + d) && arr.Contains(arrValue +2 * d)) count++;
+            }
+
+
+            return count;
+        }
+
+
+
+
     }
 }
