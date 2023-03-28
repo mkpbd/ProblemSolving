@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ProblemSolving.ArrayProblems
 {
-    public  class ProblemsSolved2
+    public class ProblemsSolved2
     {
 
         public static List<int> ClimbingLeaderboard(List<int> ranked, List<int> player)
         {
 
-            int n = ranked.Count ;
-            int m = player.Count ;
+            int n = ranked.Count;
+            int m = player.Count;
             int i = 0;
             int j = 0;
             int r = 1;
@@ -74,9 +74,10 @@ namespace ProblemSolving.ArrayProblems
             int minimum = (int)Math.Sqrt(a);
             int maximum = (int)Math.Sqrt(b);
 
-            for(var i = minimum; i <= maximum; i++) {
-            
-                if(i * i >= a && i*i <=b) result++;
+            for (var i = minimum; i <= maximum; i++)
+            {
+
+                if (i * i >= a && i * i <= b) result++;
             }
 
 
@@ -91,9 +92,9 @@ namespace ProblemSolving.ArrayProblems
             long count = 0;
             long[] x = new long[firstStgringlenght + 1];
 
-            for(var i =1; i <= firstStgringlenght; i++)
+            for (var i = 1; i <= firstStgringlenght; i++)
             {
-                if (s[i-1].ToString() == "a") count++;
+                if (s[i - 1].ToString() == "a") count++;
 
                 x[i] = count;
 
@@ -104,7 +105,7 @@ namespace ProblemSolving.ArrayProblems
 
 
             return rr;
-            
+
 
 
         }
@@ -114,7 +115,7 @@ namespace ProblemSolving.ArrayProblems
         {
             int[] x = new int[101]; int max = 0;
 
-            for(int i = 0; i < arr.Count; i++)
+            for (int i = 0; i < arr.Count; i++)
             {
                 max = Math.Max(max, ++x[arr[i]]);
             }
@@ -132,9 +133,9 @@ namespace ProblemSolving.ArrayProblems
 
             int i = 0;
 
-            while(i < c.Count - 1)
+            while (i < c.Count - 1)
             {
-                if(i + 2 < c.Count  && c[i+2] == 0)
+                if (i + 2 < c.Count && c[i + 2] == 0)
                 {
                     count++;
                     i += 2;
@@ -156,9 +157,9 @@ namespace ProblemSolving.ArrayProblems
         {
             List<int> subjectOfList = new List<int>();
 
-            for(int x = 0; x < topic.Count; x++)
+            for (int x = 0; x < topic.Count; x++)
             {
-                for(int y = x; y < topic.Count; y++)
+                for (int y = x; y < topic.Count; y++)
                 {
                     if (topic[y] == topic[x]) continue;
 
@@ -173,14 +174,14 @@ namespace ProblemSolving.ArrayProblems
                     subjectOfList.Add(subjectCount);
                 }
 
-                
+
             }
 
             int maximumSubject = subjectOfList.Max();
 
             int items = subjectOfList.Where(x => x == maximumSubject).Count();
 
-            return new List<int>() { maximumSubject, items};
+            return new List<int>() { maximumSubject, items };
         }
 
 
@@ -188,11 +189,11 @@ namespace ProblemSolving.ArrayProblems
         {
             int count = 0;
 
-            for(int i  = 0; i < arr.Count - d; i++)
+            for (int i = 0; i < arr.Count - d; i++)
             {
                 int arrValue = arr[i];
 
-                if(arr.Contains(arrValue + d) && arr.Contains(arrValue +2 * d)) count++;
+                if (arr.Contains(arrValue + d) && arr.Contains(arrValue + 2 * d)) count++;
             }
 
 
@@ -200,6 +201,27 @@ namespace ProblemSolving.ArrayProblems
         }
 
 
+
+        public static int libraryFine(int d1, int m1, int y1, int d2, int m2, int y2)
+        {
+
+            if (y1 > y2)
+            {
+                return 10000;
+            }
+            else if (y1 == y2 && m1 > m2)
+            {
+                return 500 * (m1 - m2);
+            }
+            else if (y1 == y2 && m1 == m2 && d1 > d2)
+            {
+                return 15 * (d1 - d2);
+            }
+            else
+            {
+                return 0;
+            }
+        }
 
 
     }
