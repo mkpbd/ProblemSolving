@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -222,6 +223,74 @@ namespace ProblemSolving.ArrayProblems
                 return 0;
             }
         }
+
+
+        /*
+     * Complete the 'chocolateFeast' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER n
+     *  2. INTEGER c
+     *  3. INTEGER m
+     */
+
+        public static int chocolateFeast(int n, int c, int m)
+        {
+            int cholates = n/c;
+
+            int cholateWraper = cholates;
+
+            while(cholateWraper >= m)
+            {
+                int cholateWrapperFrom = cholateWraper / m;
+                cholates += cholateWrapperFrom;
+                cholateWraper = cholateWrapperFrom + cholateWraper % m;
+            }
+
+            return cholates;
+        }
+
+
+
+
+        /*
+     * Complete the 'kaprekarNumbers' function below.
+     *
+     * The function accepts following parameters:
+     *  1. INTEGER p
+     *  2. INTEGER q
+     */
+
+        public static void kaprekarNumbers(int p, int q)
+        {
+            int count = 0;
+
+            for (int i = p; i <= q; i++)
+            {
+                long n = (long)i * i;
+                int n1 = 0;
+                String s = n.ToString();
+
+               // if (s.Length == 2) continue;
+                String s1 = s.Substring(0, s.Length / 2);
+
+                String s2 = s.Substring(s.Length / 2, s.Length);
+                if (s.Length > 1)
+                {
+                    n1 = Convert.ToInt32( s1);
+                }
+                int n2 = Convert.ToInt32(s2);
+                if (i == n1 + n2)
+                {
+                   
+                    count++;
+                }
+
+
+            }
+        }
+
 
 
     }
