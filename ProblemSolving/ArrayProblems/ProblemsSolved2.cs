@@ -237,11 +237,11 @@ namespace ProblemSolving.ArrayProblems
 
         public static int chocolateFeast(int n, int c, int m)
         {
-            int cholates = n/c;
+            int cholates = n / c;
 
             int cholateWraper = cholates;
 
-            while(cholateWraper >= m)
+            while (cholateWraper >= m)
             {
                 int cholateWrapperFrom = cholateWraper / m;
                 cholates += cholateWrapperFrom;
@@ -272,24 +272,180 @@ namespace ProblemSolving.ArrayProblems
                 int n1 = 0;
                 String s = n.ToString();
 
-               // if (s.Length == 2) continue;
+                // if (s.Length == 2) continue;
                 String s1 = s.Substring(0, s.Length / 2);
 
                 String s2 = s.Substring(s.Length / 2, s.Length);
                 if (s.Length > 1)
                 {
-                    n1 = Convert.ToInt32( s1);
+                    n1 = Convert.ToInt32(s1);
                 }
                 int n2 = Convert.ToInt32(s2);
                 if (i == n1 + n2)
                 {
-                   
+
                     count++;
                 }
 
 
             }
         }
+
+
+
+        /*
+     * Complete the 'serviceLane' function below.
+     *
+     * The function is expected to return an INTEGER_ARRAY.
+     * The function accepts following parameters:
+     *  1. INTEGER n
+     *  2. 2D_INTEGER_ARRAY cases
+     */
+
+        //public static List<int> serviceLane(int n, List<List<int>> cases)
+        //{
+
+        //}
+
+
+
+        /*
+     * Complete the 'workbook' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER n
+     *  2. INTEGER k
+     *  3. INTEGER_ARRAY arr
+     */
+
+        public static int workbook(int n, int k, List<int> arr)
+        {
+
+            int pageCount = 0;
+            int chapter = 0;
+            int special = 0;
+            while (chapter < n)
+            {
+                int index = 0;
+                while (arr[chapter] > 0)
+                {
+                    int remain = Math.Min(k, arr[chapter]);
+                    if (pageCount >= index && pageCount < (index + remain)) special++;
+                    arr[chapter] -= remain;
+                    index += remain;
+                    pageCount++;
+                }
+                chapter++;
+            }
+            return special;
+
+        }
+
+
+
+        /*
+    * Complete the 'minimumDistances' function below.
+    *
+    * The function is expected to return an INTEGER.
+    * The function accepts INTEGER_ARRAY a as parameter.
+    */
+
+        public static int minimumDistances(List<int> a)
+        {
+            List<int> result = new List<int>();
+            int minvalue = 0;
+            for (int i = 0; i < a.Count; i++)
+            {
+                for (int j = i + 1; j < a.Count; j++)
+                {
+                    if (a[i] == a[j])
+                    {
+                        result.Add(Math.Abs(i - j));
+                    }
+                }
+            }
+
+
+            if (result.Count > 0)
+            {
+                minvalue = result[0];
+
+                for (int i = 0; i < result.Count; i++)
+                {
+                    if (result[i] > minvalue)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        minvalue = result[i];
+                    }
+                }
+
+            }
+            else
+            {
+                minvalue = -1;
+            }
+
+            return minvalue;
+        }
+
+
+
+        /*
+     * Complete the 'howManyGames' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER p
+     *  2. INTEGER d
+     *  3. INTEGER m
+     *  4. INTEGER s
+     */
+
+        public static int howManyGames(int p, int d, int m, int s)
+        {
+            // Return the number of games you can buy
+            int resultCount = 0;
+            while (s >= p)
+            {
+                s -= p;
+                p = Math.Max(m, p - d);
+                resultCount++;
+            }
+            return resultCount;
+        }
+
+
+
+        /*
+     * Complete the 'stones' function below.
+     *
+     * The function is expected to return an INTEGER_ARRAY.
+     * The function accepts following parameters:
+     *  1. INTEGER n
+     *  2. INTEGER a
+     *  3. INTEGER b
+     */
+
+        public static List<int> stones(int n, int a, int b)
+        {
+            n -= 1;
+            List<int> result = new List<int>();
+            result.Add(a * n);
+            result.Add(b * n);
+            for (int i = 1; i <= (n / 2); i++)
+            {
+                result.Add((a * i) + (b * (n - i)));
+                result.Add((b * i) + (a * (n - i)));
+            }
+            result.Sort();
+            return result.Distinct().ToList();
+
+        }
+
 
 
 
