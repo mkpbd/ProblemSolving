@@ -264,31 +264,55 @@ namespace ProblemSolving.ArrayProblems
 
         public static void kaprekarNumbers(int p, int q)
         {
-            int count = 0;
-
+            List<int> kaprekars = new List<int>();
+            if (p == 1)
+            {
+                kaprekars.Add(1);
+            }
+            
             for (int i = p; i <= q; i++)
             {
-                long n = (long)i * i;
-                int n1 = 0;
-                String s = n.ToString();
-
-                // if (s.Length == 2) continue;
-                String s1 = s.Substring(0, s.Length / 2);
-
-                String s2 = s.Substring(s.Length / 2, s.Length);
-                if (s.Length > 1)
+                long squareLong = Convert.ToInt64(i) * Convert.ToInt64(i);
+                string squareString = squareLong.ToString();
+                if (squareString.Length >= 2)
                 {
-                    n1 = Convert.ToInt32(s1);
+                    int left = int.Parse(squareString.Substring(0, squareString.Length / 2));
+                    int right = 0;
+                    if (squareString.Length % 2 == 0)
+                    {
+                        right = int.Parse(squareString.Substring(squareString.Length / 2, squareString.Length / 2));
+                    }
+
+                    else
+                    {
+                        right = int.Parse(squareString.Substring(squareString.Length / 2, squareString.Length / 2 + 1));
+                    }
+                        
+                    if (left + right == i)
+                    {
+                        kaprekars.Add(i);
+                    }
+                        
                 }
-                int n2 = Convert.ToInt32(s2);
-                if (i == n1 + n2)
+            }
+
+
+            if (kaprekars.Count == 0)
+            {
+                Console.WriteLine("INVALID RANGE");
+            }
+             
+            else
+            {
+                foreach (int kaprekar in kaprekars)
                 {
+                    Console.Write($"{kaprekar} ");
 
-                    count++;
                 }
-
 
             }
+                
+                   
         }
 
 
@@ -446,6 +470,38 @@ namespace ProblemSolving.ArrayProblems
 
         }
 
+
+
+        /*
+     * Complete the 'fairRations' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts INTEGER_ARRAY B as parameter.
+     */
+
+        public static string fairRations(List<int> B)
+        {
+            int count = 0;
+            string result = string.Empty;
+            for (int i = 0; i < B.Count - 1; i++)
+            {
+                if (B[i] % 2 != 0)
+                {
+                    B[i]++;
+                   B[i + 1]++;
+                    count += 2;
+                }
+            }
+
+            if (B.Where(x => x % 2 != 0).Count() != 0)
+                result = "NO";
+            else
+                result = count.ToString();
+
+            return result;
+          
+            
+        }
 
 
 

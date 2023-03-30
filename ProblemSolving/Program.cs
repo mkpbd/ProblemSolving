@@ -31,7 +31,9 @@ namespace ProblemSolving
             //var cc = ProblemsSolved2.squares(3,9);
             //var cc = ProblemsSolved2.repeatedString("aba",10);
             //var cc = ProblemsSolved2.equalizeArray(new List<int>{ 3, 3, 2, 1, 3});
-            var cc = ProblemsSolved2.equalizeArray(new List<int>{ 1 ,2, 3 ,1, 2, 3, 3, 3 });
+           // var cc = ProblemsSolved2.equalizeArray(new List<int>{ 1 ,2, 3 ,1, 2, 3, 3, 3 });
+           //ProblemsSolved2.kaprekarNumbers(1, 100);
+           ProblemsSolved2.fairRations(new List<int>() { 2, 3, 4, 5, 6 });
 
         }
     }
