@@ -269,7 +269,7 @@ namespace ProblemSolving.ArrayProblems
             {
                 kaprekars.Add(1);
             }
-            
+
             for (int i = p; i <= q; i++)
             {
                 long squareLong = Convert.ToInt64(i) * Convert.ToInt64(i);
@@ -287,12 +287,12 @@ namespace ProblemSolving.ArrayProblems
                     {
                         right = int.Parse(squareString.Substring(squareString.Length / 2, squareString.Length / 2 + 1));
                     }
-                        
+
                     if (left + right == i)
                     {
                         kaprekars.Add(i);
                     }
-                        
+
                 }
             }
 
@@ -301,7 +301,7 @@ namespace ProblemSolving.ArrayProblems
             {
                 Console.WriteLine("INVALID RANGE");
             }
-             
+
             else
             {
                 foreach (int kaprekar in kaprekars)
@@ -311,8 +311,8 @@ namespace ProblemSolving.ArrayProblems
                 }
 
             }
-                
-                   
+
+
         }
 
 
@@ -488,7 +488,7 @@ namespace ProblemSolving.ArrayProblems
                 if (B[i] % 2 != 0)
                 {
                     B[i]++;
-                   B[i + 1]++;
+                    B[i + 1]++;
                     count += 2;
                 }
             }
@@ -499,11 +499,91 @@ namespace ProblemSolving.ArrayProblems
                 result = count.ToString();
 
             return result;
-          
-            
+
+
         }
 
 
+        public static int formingMagicSquare(List<List<int>> s)
+        {
+            List<int[,]> magicSquares = new List<int[,]>{
+            new int[,]{{2,7,6},{9,5,1},{4,3,8}},
+            new int[,]{{2,9,4},{7,5,3},{6,1,8}},
+            new int[,]{{4,3,8},{9,5,1},{2,7,6}},
+            new int[,]{{4,9,2},{3,5,7},{8,1,6}},
+            new int[,]{{6,1,8},{7,5,3},{2,9,4}},
+            new int[,]{{6,7,2},{1,5,9},{8,3,4}},
+            new int[,]{{8,3,4},{1,5,9},{6,7,2}},
+            new int[,]{{8,1,6},{3,5,7},{4,9,2}}
+        };
 
+            int minCost = 0;
+            int count = 0;
+            foreach (int[,] magicSquare in magicSquares)
+            {
+
+                int currentCost = 0;
+                for (int i = 0; i < s.Count; i++)
+                {
+                    for (int j = 0; j < s.Count; j++)
+                    {
+                        currentCost += Math.Abs(magicSquare[i, j] - s[i][j]);
+                    }
+                }
+                if (currentCost < minCost || count == 0) minCost = currentCost;
+                count++;
+            }
+            return minCost;
+        }
+
+
+        public static string encryption(string s)
+        {
+
+            s = s.Replace(" ", " ");
+            int lenght = s.Length;
+            double square = Math.Sqrt(lenght);
+
+            int row = (int) Math.Floor(square);
+            int column = (int) Math.Ceiling(square);
+            int bound = row == column ? row : row+1;
+
+            string result = "";
+
+            for (int i = 0; i < bound; i++)
+            {
+                string word = "";
+                int index = i;
+                while (index < lenght)
+                {
+                    word = word + s[index];
+                    index += column;
+                }
+                result = $"{result}{word} ";
+            }
+            return result;
+
+        }
+
+        /*
+     * Complete the 'strangeCounter' function below.
+     *
+     * The function is expected to return a LONG_INTEGER.
+     * The function accepts LONG_INTEGER t as parameter.
+     */
+
+        public static long strangeCounter(long t)
+        {
+            long first = 3; long second = 1; long third = 3;
+
+            while (third < t)
+            {
+                first *= 2;
+                second = third + 1;
+                third = second + (first - 1);
+            }
+
+            return (first - (t - second));
+        }
     }
 }
