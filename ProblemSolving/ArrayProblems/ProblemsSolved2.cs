@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ProblemSolving.ArrayProblems
 {
@@ -584,6 +585,108 @@ namespace ProblemSolving.ArrayProblems
             }
 
             return (first - (t - second));
+        }
+
+
+
+        public static int Count(HashSet<long> hashSet, int r, int c, int rd, int cd, int n)
+        {
+            int count = 0;
+            int rr = r + rd, cc = c + cd;
+            while (rr <= n && cc <= n && rr >= 1 && cc >= 1)
+            {
+                long hash = (long)rr + 131072 * (long)cc;
+                if (!hashSet.Contains(hash))
+                {
+                    count++;
+                    rr += rd;
+                    cc += cd;
+                }
+                else
+                {
+                    return count;
+                }
+            }
+            return count;
+        }
+
+
+        public static int queensAttack(int n, int k, int r_q, int c_q, List<List<int>> obstacles)
+        {
+            HashSet<long> hashSet = new HashSet<long>();
+            foreach (var v in obstacles)
+            {
+                long hash = (long)v[0] + 131072 * (long)v[1];
+                hashSet.Add(hash);
+            }
+            int count = 0;
+            count += Count(hashSet, r_q, c_q, 0, -1, n);
+            count += Count(hashSet, r_q, c_q, 0, 1, n);
+
+            count += Count(hashSet, r_q, c_q, -1, 1, n);
+            count += Count(hashSet, r_q, c_q, 1, -1, n);
+
+            count += Count(hashSet, r_q, c_q, -1, 0, n);
+            count += Count(hashSet, r_q, c_q, 1, 0, n);
+
+            count += Count(hashSet, r_q, c_q, -1, -1, n);
+            count += Count(hashSet, r_q, c_q, 1, 1, n);
+            return count;
+        }
+
+
+        /*
+    * Complete the 'biggerIsGreater' function below.
+    *
+    * The function is expected to return a STRING.
+    * The function accepts STRING w as parameter.
+    */
+
+        public static string biggerIsGreater(string w)
+        {
+            // Write your code here
+            if (w.Length < 2) return "no answer";
+            if (w.Length == 2)
+            {
+                if (w[1] > w[0])
+                {
+                    return $"{w[1]}{w[0]}";
+                }
+                else return "no answer";
+            }
+
+
+            char[] answer = w.ToCharArray();
+            for (int i = w.Length - 1; i > 0; i--)
+            {
+                for (int j = i - 1; j >= 0; j--)
+                {
+                    if (answer[i] > answer[j])
+                    {
+                        char tmp = answer[i];
+                        answer[i] = answer[j];
+                        answer[j] = tmp;
+                       // Array.Sort(answer, j + 1, w.Length-1);
+                       // answer.OrderBy(x => x);
+                        // answer.OrderBy<string>();
+                        //return answer.GetValue(i) +""+ answer.GetValue(j);
+                        // answer.Append(answer[i]);
+                        //  answer.Append(answer[j]);
+
+                        string str = new string(answer);
+                        return str.OrderByDescending(x =>x).ToString();
+                    }
+                }
+                
+                 
+            }
+
+
+
+            return "no answer";
+
+
+
         }
     }
 }
