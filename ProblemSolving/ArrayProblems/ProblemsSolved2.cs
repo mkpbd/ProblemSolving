@@ -545,9 +545,9 @@ namespace ProblemSolving.ArrayProblems
             int lenght = s.Length;
             double square = Math.Sqrt(lenght);
 
-            int row = (int) Math.Floor(square);
-            int column = (int) Math.Ceiling(square);
-            int bound = row == column ? row : row+1;
+            int row = (int)Math.Floor(square);
+            int column = (int)Math.Ceiling(square);
+            int bound = row == column ? row : row + 1;
 
             string result = "";
 
@@ -644,49 +644,113 @@ namespace ProblemSolving.ArrayProblems
 
         public static string biggerIsGreater(string w)
         {
-            // Write your code here
-            if (w.Length < 2) return "no answer";
-            if (w.Length == 2)
+            var possible = false;
+            var charArray = w.ToArray();
+            for (int i = w.Length - 2; i >= 0; i--)
             {
-                if (w[1] > w[0])
-                {
-                    return $"{w[1]}{w[0]}";
-                }
-                else return "no answer";
-            }
 
-
-            char[] answer = w.ToCharArray();
-            for (int i = w.Length - 1; i > 0; i--)
-            {
-                for (int j = i - 1; j >= 0; j--)
+                var charsGreater = new List<int>();
+                for (int j = i + 1; j < w.Length; j++)
                 {
-                    if (answer[i] > answer[j])
+                    if ((int)charArray[i] % 32 < (int)charArray[j] % 32)
                     {
-                        char tmp = answer[i];
-                        answer[i] = answer[j];
-                        answer[j] = tmp;
-                       // Array.Sort(answer, j + 1, w.Length-1);
-                       // answer.OrderBy(x => x);
-                        // answer.OrderBy<string>();
-                        //return answer.GetValue(i) +""+ answer.GetValue(j);
-                        // answer.Append(answer[i]);
-                        //  answer.Append(answer[j]);
-
-                        string str = new string(answer);
-                        return str.OrderByDescending(x =>x).ToString();
+                        possible = true;
+                        charsGreater.Add(j);
                     }
                 }
-                
-                 
+                if (possible)
+                {
+                    var min = 0;
+                    for (int k = 1; k < charsGreater.Count(); k++)
+                    {
+                        if ((int)charArray[charsGreater[k]] % 32 < (int)charArray[charsGreater[min]] % 32)
+                        {
+                            min = k;
+                        }
+                    }
+                    var temp = charArray[i];
+                    charArray[i] = charArray[charsGreater[min]];
+                    charArray[charsGreater[min]] = temp;
+
+                    var s = new string(charArray);
+
+                    var p1 = s.Substring(0, i + 1);
+                    var p2 = new string(s.Substring(i + 1, s.Length - i - 1).ToArray().OrderBy(x => x).ToArray());
+                    return p1 + p2;
+                }
             }
-
-
 
             return "no answer";
 
 
 
         }
+
+        /*
+    * Complete the 'organizingContainers' function below.
+    *
+    * The function is expected to return a STRING.
+    * The function accepts 2D_INTEGER_ARRAY container as parameter.
+    */
+
+        public static string organizingContainers(List<List<int>> container)
+        {
+
+
+            int containerSize = container.Count;
+            int[] row = new int[containerSize];
+            int[] column = new int[containerSize];
+
+            for (int i = 0; i < container.Count; i++)
+            {
+                for (int j = 0; j < container[i].Count; j++)
+                {
+                    row[i] += container[i][j];
+                    column[i] += container[j][i];
+                }
+            }
+
+            int ans = 0;
+            for (int i = 0; i < containerSize; i++)
+            {
+                ans ^= row[i];
+                ans ^= column[i];
+            }
+            return ans == 0 ? "Possible" : "Impossible";
+
+
+
+        }
+
+
+        /*
+     * Complete the 'cavityMap' function below.
+     *
+     * The function is expected to return a STRING_ARRAY.
+     * The function accepts STRING_ARRAY grid as parameter.
+     */
+
+        public static List<string> cavityMap(List<string> grid)
+        {
+            for (int i = 1; i < grid.Count - 1; i++)
+            {
+                for (int j = 1; j < grid[i].Length - 1; j++)
+                {
+                    if (
+                        grid[i][j] > grid[i - 1][j] && grid[i][j] > grid[i + 1][j] &&
+                        grid[i][j] > grid[i][j - 1] && grid[i][j] > grid[i][j + 1]
+                        
+                        )
+                    {
+                        var sb = new StringBuilder(grid[i]);
+                        sb[j] = 'X';
+                        grid[i] = sb.ToString();
+                    }
+                }
+            }
+            return grid;
+        }
+
+
     }
 }

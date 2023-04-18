@@ -37,13 +37,32 @@ namespace ProblemSolving
             //  ProblemsSolved2.fairRations(new List<int>() { 2, 3, 4, 5, 6 });
 
 
-            int T = Convert.ToInt32(Console.ReadLine().Trim());
+            //int T = Convert.ToInt32(Console.ReadLine().Trim());
 
-            for (int TItr = 0; TItr < T; TItr++)
+            //for (int TItr = 0; TItr < T; TItr++)
+            //{
+            //    string w = Console.ReadLine();
+
+            //    string result = ProblemsSolved2.biggerIsGreater(w);
+
+            //    Console.WriteLine(result);
+            //}
+
+
+            int q = Convert.ToInt32(Console.ReadLine().Trim());
+
+            for (int qItr = 0; qItr < q; qItr++)
             {
-                string w = Console.ReadLine();
+                int n = Convert.ToInt32(Console.ReadLine().Trim());
 
-                string result = ProblemsSolved2.biggerIsGreater(w);
+                List<List<int>> container = new List<List<int>>();
+
+                for (int i = 0; i < n; i++)
+                {
+                    container.Add(Console.ReadLine().TrimEnd().Split(' ').ToList().Select(containerTemp => Convert.ToInt32(containerTemp)).ToList());
+                }
+
+                string result = ProblemsSolved2.organizingContainers(container);
 
                 Console.WriteLine(result);
             }
