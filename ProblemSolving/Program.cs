@@ -1,4 +1,5 @@
 ﻿using ProblemSolving.ArrayProblems;
+using ProblemSolving.Prolems;
 using System.IO;
 
 namespace ProblemSolving
@@ -49,23 +50,37 @@ namespace ProblemSolving
             //}
 
 
-            int q = Convert.ToInt32(Console.ReadLine().Trim());
+            //int q = Convert.ToInt32(Console.ReadLine().Trim());
 
-            for (int qItr = 0; qItr < q; qItr++)
-            {
-                int n = Convert.ToInt32(Console.ReadLine().Trim());
+            //for (int qItr = 0; qItr < q; qItr++)
+            //{
+            //    int n = Convert.ToInt32(Console.ReadLine().Trim());
 
-                List<List<int>> container = new List<List<int>>();
+            //    List<List<int>> container = new List<List<int>>();
 
-                for (int i = 0; i < n; i++)
-                {
-                    container.Add(Console.ReadLine().TrimEnd().Split(' ').ToList().Select(containerTemp => Convert.ToInt32(containerTemp)).ToList());
-                }
+            //    for (int i = 0; i < n; i++)
+            //    {
+            //        container.Add(Console.ReadLine().TrimEnd().Split(' ').ToList().Select(containerTemp => Convert.ToInt32(containerTemp)).ToList());
+            //    }
 
-                string result = ProblemsSolved2.organizingContainers(container);
+            //    string result = ProblemsSolved2.organizingContainers(container);
 
-                Console.WriteLine(result);
-            }
+            //    Console.WriteLine(result);
+            //}
+
+            //Console.WriteLine(EasyProblemsSolve.happyLadybugs("AABBC"));
+            //Console.WriteLine(EasyProblemsSolve.happyLadybugs("AABBC_C"));
+            //Console.WriteLine(EasyProblemsSolve.happyLadybugs("AABCBC"));
+            //Console.WriteLine(EasyProblemsSolve.happyLadybugs("G"));
+            //Console.WriteLine(EasyProblemsSolve.happyLadybugs("G"));
+            //Console.WriteLine(EasyProblemsSolve.happyLadybugs("GR"));
+            //Console.WriteLine(EasyProblemsSolve.happyLadybugs("_GR_"));
+            //Console.WriteLine(EasyProblemsSolve.happyLadybugs("_R_G_"));
+            //Console.WriteLine(EasyProblemsSolve.happyLadybugs("R_R_R"));
+            Console.WriteLine(EasyProblemsSolve.happyLadybugs("RRGGBBXY"));
+            //Console.WriteLine(EasyProblemsSolve.happyLadybugs("RRGGBBXY"));
+            
+            Console.ReadLine();
 
         }
     }
